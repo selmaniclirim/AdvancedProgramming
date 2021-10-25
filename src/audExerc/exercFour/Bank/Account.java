@@ -1,4 +1,4 @@
-package audExerc.ExercFour.Bank;
+package audExerc.exercFour.Bank;
 
 public abstract class Account {
     private String name;

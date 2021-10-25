@@ -1,4 +1,4 @@
-package audExerc.ExercFour.Calculator;
+package audExerc.exercFour.Calculator;
 
 public class Calculator {
     private double result;

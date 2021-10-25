@@ -1,4 +1,4 @@
-package audExerc.ExercFour.Bank;
+package audExerc.exercFour.Bank;
 
 public interface InterestBearingAccount {
     void addInterest();

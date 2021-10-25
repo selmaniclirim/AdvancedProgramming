@@ -1,4 +1,4 @@
-package audExerc.ExercFour.Calculator;
+package audExerc.exercFour.Calculator;
 
 import java.util.Scanner;
 

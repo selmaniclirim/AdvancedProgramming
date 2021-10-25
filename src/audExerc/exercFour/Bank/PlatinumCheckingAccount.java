@@ -1,4 +1,4 @@
-package audExerc.ExercFour.Bank;
+package audExerc.exercFour.Bank;
 
 public class PlatinumCheckingAccount extends InterestCheckingAccount{
     public PlatinumCheckingAccount(String name, double currentBal) {

@@ -1,4 +1,4 @@
-package audExerc.ExercFour.Calculator;
+package audExerc.exercFour.Calculator;
 
 public class UnknownOperatorException extends Exception {
     public UnknownOperatorException(char operator) {

@@ -1,4 +1,4 @@
-package audExerc.ExercFour.Bank;
+package audExerc.exercFour.Bank;
 
 public class InterestCheckingAccount extends Account implements InterestBearingAccount{
     public static final double INTEREST_RATE = 0.03;

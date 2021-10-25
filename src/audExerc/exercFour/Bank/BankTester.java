@@ -1,4 +1,4 @@
-package audExerc.ExercFour.Bank;
+package audExerc.exercFour.Bank;
 
 public class BankTester {
     public static void main(String[] args) {
