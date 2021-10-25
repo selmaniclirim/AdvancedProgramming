@@ -8,12 +8,13 @@ public class FlatAmountProvisionTransaction extends Transaction {
         this.flatAmount = flatProvision;
     }
 
-    public String getFlatAmount() {
-        return flatAmount;
-    }
-
     public boolean equals(Object o) {
         return this == o;
+    }
+
+    @Override
+    public double getProvision() {
+        return Double.parseDouble(flatAmount.replace("$",""));
     }
 
 }

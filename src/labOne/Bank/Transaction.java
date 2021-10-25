@@ -1,5 +1,7 @@
 package labOne.Bank;
 
+import java.util.Objects;
+
 public abstract class Transaction {
     private final long fromId;
     private final long toId;
@@ -28,5 +30,19 @@ public abstract class Transaction {
     public String getDescription() {
         return description;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Transaction that = (Transaction) o;
+        return Objects.equals(fromId, that.fromId) &&
+                Objects.equals(toId, that.toId) &&
+                Objects.equals(amount, that.amount) &&
+                Objects.equals(description, that.description);
+    }
+
+
+    public abstract double getProvision();
 }
 

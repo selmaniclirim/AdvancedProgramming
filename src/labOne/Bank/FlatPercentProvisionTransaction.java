@@ -8,12 +8,14 @@ public class FlatPercentProvisionTransaction extends Transaction {
         this.flatPercent = centsPerDollar;
     }
 
-    public int getFlatPercent() {
-        return flatPercent;
-    }
-
     public boolean equals(Object o) {
         return this == o;
+    }
+
+    @Override
+    public double getProvision() {
+        long amount = ( long ) Double.parseDouble(getAmount().replace("$","")) / 100;
+        return flatPercent * amount ;
     }
 }
 
