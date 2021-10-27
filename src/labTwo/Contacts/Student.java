@@ -25,8 +25,10 @@ public class Student {
             contact = Arrays.copyOf(contact, contact.length * 2);
         }
         for(int i = 0; i < contact.length; i++){
-            if (contact[i] == null)
+            if (contact[i] == null) {
                 contact[i] = new EmailContact(date, email);
+                break;
+            }
         }
     }
 
@@ -34,33 +36,48 @@ public class Student {
         if(contact[contact.length-1] != null) {
             contact = Arrays.copyOf(contact, contact.length * 2);
         }
+
         for(int i = 0; i < contact.length; i++){
-            if (contact[i] == null)
+            if (contact[i] == null) {
                 contact[i] = new PhoneContact(date, phone);
+                break;
+            }
         }
     }
     public Contact[] getEmailContacts() {
-        Contact[] emailContacts = new Contact[contact.length];
+        Contact[] emailContacts = new Contact[0];
         int x = 0;
         for (Contact value : contact) {
-            if (Objects.equals(value.getType(), "Email"))
+            if (value != null && Objects.equals(value.getType(), "Email")) {
+                emailContacts = Arrays.copyOf(emailContacts, emailContacts.length + 1);
                 emailContacts[x] = value;
+                x++;
+            }
         }
         return emailContacts;
     }
 
     public Contact[] getPhoneContacts() {
-        Contact[] phoneContacts = new Contact[contact.length];
+        Contact[] phoneContacts = new Contact[0];
         int x = 0;
         for (Contact value : contact) {
-            if (Objects.equals(value.getType(), "Phone"))
+            if (value != null && Objects.equals(value.getType(), "Phone")) {
+                phoneContacts = Arrays.copyOf(phoneContacts, phoneContacts.length + 1);
                 phoneContacts[x] = value;
+                x++;
+            }
+
         }
         return phoneContacts;
     }
 
     public int getTotalContacts() {
-        return contact.length;
+        int totalContacts = 0;
+        for(Contact contact : contact) {
+            if(contact != null)
+                totalContacts++;
+        }
+        return totalContacts;
     }
 
     public String getCity() {
@@ -80,8 +97,23 @@ public class Student {
     }
 
     public Contact getLatestContact() {
-        return contact[contact.length - 1];
+        Contact newestContact;
+        newestContact = contact[0];
+        for(Contact contact : contact) {
+            if(contact != null && contact.isNewerThan(newestContact))
+                newestContact = contact;
+        }
+        return newestContact;
     }
+
+//    public int getTrueLength(Contact[] contact) {
+//        int count = -1;
+//        for(int i = 0; i < contact.length; i++) {
+//            if(contact[i] != null)
+//                count++;
+//        }
+//        return count;
+//    }
 
     public String getFirstName() {
         return firstName;
@@ -96,14 +128,17 @@ public class Student {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("{\"ime\":\"").append(getFirstName()).append("\", ");
         stringBuilder.append("\"prezime\":\"").append(getLastName()).append("\", ");
-        stringBuilder.append("\"vozrast\":\"").append(getAge()).append("\", ");
+        stringBuilder.append("\"vozrast\":").append(getAge()).append(", ");
         stringBuilder.append("\"grad\":\"").append(getCity()).append("\", ");
-        stringBuilder.append("\"indeks\":\"").append(getIndex()).append("\", ");
+        stringBuilder.append("\"indeks\":").append(getIndex()).append(", ");
 
         //Start appending phone contacts:
         stringBuilder.append("\"telefonskiKontakti\":[");
         for(int i = 0; i < getPhoneContacts().length; i++) {
-            stringBuilder.append("\"").append(getPhoneContacts()[i]).append("\", ");
+            stringBuilder.append("\"").append(getPhoneContacts()[i]).append("\"");
+            if(i != getPhoneContacts().length - 1) {
+                stringBuilder.append(", ");
+            }
         }
         stringBuilder.append("], ");
         //End append phoneContact Array.
@@ -111,7 +146,11 @@ public class Student {
         //Start appending email contacts
         stringBuilder.append("\"emailKontakti\":[");
         for(int i = 0; i < getEmailContacts().length; i++) {
-            stringBuilder.append("\"").append(getEmailContacts()[i]).append("\", ");
+            stringBuilder.append("\"").append(getEmailContacts()[i]).append("\"");
+            if(i != getEmailContacts().length - 1) {
+                stringBuilder.append(", ");
+            }
+
         }
         stringBuilder.append("]}");
         //End Appending email contacts and finish toString method();

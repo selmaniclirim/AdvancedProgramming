@@ -12,7 +12,7 @@ public class PhoneContact extends Contact{
                 operator = Operator.TMOBILE;
             else if(phone.startsWith("07" + i) && (i > 4 && i < 7))
                 operator = Operator.ONE;
-            else if(phone.startsWith("07" + i) && i > 7) {
+            else if(phone.startsWith("07" + i) && i >= 7) {
                 operator = Operator.VIP;
             }
         }
@@ -22,12 +22,17 @@ public class PhoneContact extends Contact{
         return phone;
     }
 
-    public Operator getOperator() {
-        return operator;
+    public String getOperator() {
+        return operator.toString();
     }
 
     @Override
     public String getType() {
         return "Phone";
+    }
+
+    @Override
+    public String toString() {
+        return phone;
     }
 }

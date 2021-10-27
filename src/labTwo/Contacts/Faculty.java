@@ -27,14 +27,19 @@ public class Faculty {
 
     public Student getStudent(long index) {
         for (Student student : students) {
-            if (student.getIndex() == index) ;
-            return student;
+            if (student.getIndex() == index) {
+                return student;
+            }
         }
         return null;
     }
 
     public double getAverageNumberOfContacts() {
-        return 6.9;
+        double avg = 0;
+        for(Student student : students) {
+            avg += student.getTotalContacts();
+        }
+        return avg / students.length;
     }
 
     public Student getStudentWithMostContacts() {
@@ -53,10 +58,12 @@ public class Faculty {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("{\"fakultet:\":\"").append(name).append("\", ");
-        stringBuilder.append("\"studenti:\":[");
-        for(Student student : students){
-            stringBuilder.append(student).append(",");
+        stringBuilder.append("{\"fakultet\":\"").append(name).append("\", ");
+        stringBuilder.append("\"studenti\":[");
+        for(int i = 0; i < students.length; i++) {
+                stringBuilder.append(students[i]);
+                if(i != students.length - 1)
+                    stringBuilder.append(", ");
         }
         stringBuilder.append("]}");
 
