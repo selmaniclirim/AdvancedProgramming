@@ -121,7 +121,7 @@ public class DoubleMatrixTester {
                     break;
                 }
 
-                case "CHECK_EQUALS": {
+                    case "CHECK_EQUALS": {
                     int val = scanner.nextInt();
 
                     int maxOps = val % 7;
