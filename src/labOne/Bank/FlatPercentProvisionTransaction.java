@@ -15,7 +15,7 @@ public class FlatPercentProvisionTransaction extends Transaction {
     @Override
     public double getProvision() {
         double amount =  Double.parseDouble(getAmount().replace("$","")) / 100;
-        return flatPercent * amount;
+        return flatPercent * Math.floor(amount * 100)/ 100;
     }
 }
 

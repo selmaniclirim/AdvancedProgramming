@@ -3,9 +3,6 @@ package labOne.Bank;
 import java.util.*;
 import java.util.stream.Collectors;
 
-//TODO: Fix that fucking 1% error with the balances from the data having to be parsed to doubles
-// and back to string so often.
-
 public class BankTester {
 
     public static void main(String[] args) {
